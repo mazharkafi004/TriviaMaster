@@ -55,7 +55,7 @@ You can try out the Trivia Master application by visiting the following link: [L
 - Selecting questions randomly based on the chosen subject and preferences.
 - Educational and entertaining way to test your knowledge in various subjects.
 
-##Contibuting
+## Contibuting
 Contributions are welcome! If you'd like to add more questions, improve the user interface, or fix any issues, feel free to submit pull requests.
 
  - Fork the repository.
@@ -64,5 +64,5 @@ Contributions are welcome! If you'd like to add more questions, improve the user
  - Push to the branch: ```git push origin feature-name```
  - Open a pull request.
 
- ##Licence
+ ## Licence
  This project is licensed under the GNU General Public License. See the ```LICENSE``` file for details.
