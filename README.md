@@ -34,8 +34,7 @@ You can try out the Trivia Master application by visiting the following link: [L
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/mazharkafi004/trivia-master.git
- ```
+   git clone https://github.com/mazharkafi004/trivia-master.git```
 2. Navigate to the project directory: 
 ```cd trivia-master```
 3. Open the ```index.html``` file in your preferred web browser to start the application.
