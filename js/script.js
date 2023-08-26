@@ -1,5 +1,8 @@
 import historyQuestions from "./historyQuestion.js";
 import scienceQuestions from "./scienceQuestions.js";
+import geographyQuestions from "./geographyQuestions.js";
+import technologyQuestions from "./technologyQuestions.js";
+import literatureQuestions from "./literatureQuestions.js";
 
 const shuffleArray = (array) => {
   for (let i = array.length - 1; i > 0; i--) {
@@ -38,7 +41,7 @@ const loadQuestion = () => {
     const optionButton = document.createElement("button");
     optionButton.className = "option";
     optionButton.textContent = option;
-    optionButton.classList.add('option-result');
+    optionButton.classList.add("option-result");
     optionButton.addEventListener("click", () => handleOptionClick(index));
     optionButtonsContainer.appendChild(optionButton);
   });
@@ -52,19 +55,20 @@ const handleOptionClick = (selectedIndex) => {
 };
 
 const checkAnswer = (selectedIndex) => {
+    feedback.style.opacity = "0";
   const currentQuestion = selectedQuestions[currentQuestionIndex];
   optionButtonsContainer.innerHTML = "";
 
   const resultItem = document.createElement("li");
 
   const questionInfo = document.createElement("span");
-  questionInfo.classList.add('option-question');
+  questionInfo.classList.add("option-question");
   questionInfo.textContent = `${currentQuestion.question}: `;
   resultItem.appendChild(questionInfo);
 
   currentQuestion.options.forEach((option, optionIndex) => {
     const optionSpan = document.createElement("span");
-    optionSpan.classList.add('option-result');
+    optionSpan.classList.add("option-result");
     optionSpan.textContent = `${option} `;
 
     if (selectedIndex === optionIndex) {
@@ -81,14 +85,21 @@ const checkAnswer = (selectedIndex) => {
   });
 
   resultList.appendChild(resultItem);
-
+  feedback.classList.remove("option-result","red");
+  feedback.classList.remove("option-result","green");
   if (
     currentQuestion.options[selectedIndex] === currentQuestion.correctAnswer
   ) {
     score++;
+    feedback.style.opacity = "100";
+    feedback.classList.add("option-result","green");
     feedback.textContent = "Correct!";
+   
   } else {
+    feedback.style.opacity = "100";
+    feedback.classList.add("option-result","red");
     feedback.textContent = "Incorrect!";
+    
   }
   nextButton.disabled = false;
 };
@@ -117,13 +128,7 @@ const restartQuiz = () => {
 };
 
 nextButton.addEventListener("click", nextQuestion);
-restartButton.addEventListener("click", restartQuiz);
 
-backToHomeButtonResult.addEventListener("click", () => {
-  document.querySelector(".home-container").style.display = "block";
-  document.querySelector("#question-block").style.display = "none";
-  document.querySelector(".result-sheet").style.display = "none";
-});
 const startQuiz = (subjectQuestions) => {
   resultList.innerHTML = "";
   // Reset the currentQuestionIndex and score
@@ -141,19 +146,30 @@ const startQuiz = (subjectQuestions) => {
 };
 
 document
-  .getElementById("subject1-btn")
+  .getElementById("histo-btn")
   .addEventListener("click", () => startQuiz(historyQuestions));
 document
-  .getElementById("subject2-btn")
+  .getElementById("sci-btn")
   .addEventListener("click", () => startQuiz(scienceQuestions));
+  document
+  .getElementById("geo-btn")
+  .addEventListener("click", () => startQuiz(geographyQuestions));
+  document
+  .getElementById("tech-btn")
+  .addEventListener("click", () => startQuiz(technologyQuestions));
+  document
+  .getElementById("lit-btn")
+  .addEventListener("click", () => startQuiz(literatureQuestions));
+  
+const darkModeToggle = document.getElementById("dark-mode-toggle");
 
-const darkModeButton = document.getElementById("dark-mode-btn");
-
-darkModeButton.addEventListener("click", () => {
+darkModeToggle.addEventListener("change", () => {
   document.body.classList.toggle("dark-mode");
-  if (document.body.classList.contains("dark-mode")) {
-    darkModeButton.textContent = "Toggle Light Mode";
-  } else {
-    darkModeButton.textContent = "Toggle Dark Mode";
-  }
+});
+restartButton.addEventListener("click", restartQuiz);
+
+backToHomeButtonResult.addEventListener("click", () => {
+  document.querySelector(".home-container").style.display = "block";
+  document.querySelector("#question-block").style.display = "none";
+  document.querySelector(".result-sheet").style.display = "none";
 });

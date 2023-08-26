@@ -1,50 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
     <title>Trivia Master</title>
-</head>
-<body>
-    <div class="quiz-container">
-        <div class="dark-mode-toggle">
-            <button id="dark-mode-btn" class="btn btn2">Toggle Dark Mode</button>
-        </div>
+  </head>
+  <body>
+    <div class="container">
+      <div class="quiz-container">
+        <label class="toggle-switch">
+          <input type="checkbox" id="dark-mode-toggle" />
+          <span class="slider round"></span>
+        </label>
         <div class="home-container">
-            <h1>Welcome to Trivia Master!</h1>
-            <p>Choose a subject:</p>
-            <button id="subject1-btn" class="btn btn2">History</button>
-            <button id="subject2-btn" class="btn btn2">Science</button>
+          <h1>Welcome to Trivia Master!</h1>
+          <p>Choose a subject:</p>
+          <button id="histo-btn" class="btn btn2">History</button>
+          <button id="sci-btn" class="btn btn2">Science</button>
+          <button id="geo-btn" class="btn btn2">Geography</button>
+          <button id="tech-btn" class="btn btn2">Tech</button>
+          <button id="lit-btn" class="btn btn2">Literature</button>
         </div>
-        
-        <div id="question-block" style="display: none;">
-            <div class="question">
-                <p id="question-text"></p>
-            </div>
-            <div class="options">
-                <button class="option" id="option1"></button>
-                <button class="option" id="option2"></button>
-                <button class="option" id="option3"></button>
-                <button class="option" id="option4"></button>
-            </div>
-            <div class="feedback" id="feedback"></div>
-            <button id="next-btn" class="btn btn2">Next Question</button>
+        <div id="question-block" style="display: none">
+          <div class="question">
+            <p id="question-text"></p>
+          </div>
+          <div class="options">
+            <button class="option" id="option1"></button>
+            <button class="option" id="option2"></button>
+            <button class="option" id="option3"></button>
+            <button class="option" id="option4"></button>
+          </div>
+          <div class="feedback" id="feedback"></div>
+          <button id="next-btn" class="btn btn2">Next Question</button>
         </div>
-    </div>
-<br>
-<br>
-<br>
-    <div class="result-sheet" id="result-sheet">
-        <h2>Result Sheet</h2>
+      </div>
+      <div class="result-sheet" id="result-sheet" style="display: none">
+        <h2 class="sub-title">Result Sheet</h2>
         <ul id="result-list"></ul>
         <div class="button-container">
-            <button id="restart-btn" class="btn btn2">Restart Quiz</button>
-            <button id="result-back-to-home-btn" class="btn btn2">Back to Home</button>
-          </div>
-        
+          <button id="restart-btn" class="btn btn2">Restart Quiz</button>
+          <button id="result-back-to-home-btn" class="btn btn2">
+            Back to Home
+          </button>
+        </div>
+      </div>
     </div>
-
-    <script type="module" src="script.js"></script>
-</body>
+    <script type="module" src="js/script.js"></script>
+  </body>
 </html>
