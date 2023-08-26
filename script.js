@@ -38,6 +38,7 @@ const loadQuestion = () => {
     const optionButton = document.createElement("button");
     optionButton.className = "option";
     optionButton.textContent = option;
+    optionButton.classList.add('option-result');
     optionButton.addEventListener("click", () => handleOptionClick(index));
     optionButtonsContainer.appendChild(optionButton);
   });
@@ -57,11 +58,13 @@ const checkAnswer = (selectedIndex) => {
   const resultItem = document.createElement("li");
 
   const questionInfo = document.createElement("span");
+  questionInfo.classList.add('option-question');
   questionInfo.textContent = `${currentQuestion.question}: `;
   resultItem.appendChild(questionInfo);
 
   currentQuestion.options.forEach((option, optionIndex) => {
     const optionSpan = document.createElement("span");
+    optionSpan.classList.add('option-result');
     optionSpan.textContent = `${option} `;
 
     if (selectedIndex === optionIndex) {
@@ -91,29 +94,27 @@ const checkAnswer = (selectedIndex) => {
 };
 
 const nextQuestion = () => {
-    currentQuestionIndex++;
-    if (currentQuestionIndex < selectedQuestions.length) {
-      loadQuestion();
-    } else {
-      questionText.textContent = "Quiz completed!";
-      optionButtonsContainer.innerHTML = "";
-      feedback.textContent = `Your score: ${score} out of ${selectedQuestions.length}`;
-      nextButton.style.display = "none"; // Hide the next question button
-      resultSheet.style.display = "block";
-      backToHomeButtonResult.style.display = "block";
-    }
-  };
-  
-
-  const restartQuiz = () => {
-    currentQuestionIndex = 0;
-    score = 0;
-    resultSheet.style.display = "none";
-    nextButton.style.display = "block"; // Display the next question button
-    resultList.innerHTML = ""; // Clear the result list
+  currentQuestionIndex++;
+  if (currentQuestionIndex < selectedQuestions.length) {
     loadQuestion();
-  };
-  
+  } else {
+    questionText.textContent = "Quiz completed!";
+    optionButtonsContainer.innerHTML = "";
+    feedback.textContent = `Your score: ${score} out of ${selectedQuestions.length}`;
+    nextButton.style.display = "none"; // Hide the next question button
+    resultSheet.style.display = "block";
+    backToHomeButtonResult.style.display = "block";
+  }
+};
+
+const restartQuiz = () => {
+  currentQuestionIndex = 0;
+  score = 0;
+  resultSheet.style.display = "none";
+  nextButton.style.display = "block"; // Display the next question button
+  resultList.innerHTML = ""; // Clear the result list
+  loadQuestion();
+};
 
 nextButton.addEventListener("click", nextQuestion);
 restartButton.addEventListener("click", restartQuiz);
@@ -124,24 +125,35 @@ backToHomeButtonResult.addEventListener("click", () => {
   document.querySelector(".result-sheet").style.display = "none";
 });
 const startQuiz = (subjectQuestions) => {
-    resultList.innerHTML = "";
-    // Reset the currentQuestionIndex and score
-    currentQuestionIndex = 0;
-    score = 0;
-  
-    document.querySelector(".home-container").style.display = "none";
-    document.querySelector(".quiz-container").style.display = "block";
-    nextButton.style.display = "block";
-  
-    shuffleArray(subjectQuestions);
-    selectedQuestions = subjectQuestions.slice(0, 5);
-    loadQuestion();
-    questionblock.style.display = "block";
-  };
-  
+  resultList.innerHTML = "";
+  // Reset the currentQuestionIndex and score
+  currentQuestionIndex = 0;
+  score = 0;
+
+  document.querySelector(".home-container").style.display = "none";
+  document.querySelector(".quiz-container").style.display = "block";
+  nextButton.style.display = "block";
+
+  shuffleArray(subjectQuestions);
+  selectedQuestions = subjectQuestions.slice(0, 5);
+  loadQuestion();
+  questionblock.style.display = "block";
+};
+
 document
   .getElementById("subject1-btn")
   .addEventListener("click", () => startQuiz(historyQuestions));
 document
   .getElementById("subject2-btn")
   .addEventListener("click", () => startQuiz(scienceQuestions));
+
+const darkModeButton = document.getElementById("dark-mode-btn");
+
+darkModeButton.addEventListener("click", () => {
+  document.body.classList.toggle("dark-mode");
+  if (document.body.classList.contains("dark-mode")) {
+    darkModeButton.textContent = "Toggle Light Mode";
+  } else {
+    darkModeButton.textContent = "Toggle Dark Mode";
+  }
+});
