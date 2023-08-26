@@ -14,14 +14,17 @@
           <span class="slider round"></span>
         </label>
         <div class="home-container">
-          <h1>Welcome to Trivia Master!</h1>
-          <p>Choose a subject:</p>
-          <button id="histo-btn" class="btn btn2">History</button>
-          <button id="sci-btn" class="btn btn2">Science</button>
-          <button id="geo-btn" class="btn btn2">Geography</button>
-          <button id="tech-btn" class="btn btn2">Tech</button>
-          <button id="lit-btn" class="btn btn2">Literature</button>
-        </div>
+            <h1>Welcome to Trivia Master!</h1>
+            <p>Choose a subject:</p>
+            <div class="button-group">
+              <button id="histo-btn" class="btn btn2">History</button>
+              <button id="sci-btn" class="btn btn2">Science</button>
+              <button id="geo-btn" class="btn btn2">Geography</button>
+              <button id="tech-btn" class="btn btn2">Tech</button>
+              <button id="lit-btn" class="btn btn2">Literature</button>
+            </div>
+          </div>
+          
         <div id="question-block" style="display: none">
           <div class="question">
             <p id="question-text"></p>
@@ -37,7 +40,7 @@
         </div>
       </div>
       <div class="result-sheet" id="result-sheet" style="display: none">
-        <h2 class="sub-title">Result Sheet</h2>
+        <h2 class="sub-title">Your Result</h2>
         <ul id="result-list"></ul>
         <div class="button-container">
           <button id="restart-btn" class="btn btn2">Restart Quiz</button>

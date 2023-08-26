@@ -55,7 +55,7 @@ const handleOptionClick = (selectedIndex) => {
 };
 
 const checkAnswer = (selectedIndex) => {
-    feedback.style.opacity = "0";
+    // feedback.style.opacity = "0";
   const currentQuestion = selectedQuestions[currentQuestionIndex];
   optionButtonsContainer.innerHTML = "";
 
@@ -91,12 +91,12 @@ const checkAnswer = (selectedIndex) => {
     currentQuestion.options[selectedIndex] === currentQuestion.correctAnswer
   ) {
     score++;
-    feedback.style.opacity = "100";
+    // feedback.style.visibility = "visible";
     feedback.classList.add("option-result","green");
     feedback.textContent = "Correct!";
    
   } else {
-    feedback.style.opacity = "100";
+    // feedback.style.visibility = "visible";
     feedback.classList.add("option-result","red");
     feedback.textContent = "Incorrect!";
     
@@ -109,8 +109,12 @@ const nextQuestion = () => {
   if (currentQuestionIndex < selectedQuestions.length) {
     loadQuestion();
   } else {
+    // feedback.style.visibility = "visible";
+    feedback.classList.remove("option-result","red");
+    feedback.classList.remove("option-result","green");
     questionText.textContent = "Quiz completed!";
     optionButtonsContainer.innerHTML = "";
+    feedback.classList.add("option-result","blue");
     feedback.textContent = `Your score: ${score} out of ${selectedQuestions.length}`;
     nextButton.style.display = "none"; // Hide the next question button
     resultSheet.style.display = "block";
