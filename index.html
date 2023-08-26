@@ -8,24 +8,37 @@
 </head>
 <body>
     <div class="quiz-container">
-        <div class="question">
-            <p id="question-text"></p>
+        <div class="home-container">
+            <h1>Welcome to Trivia Master!</h1>
+            <p>Choose a subject:</p>
+            <button id="subject1-btn">History</button>
+            <button id="subject2-btn">Science</button>
+            <!-- Add more subject buttons if needed -->
         </div>
-        <div class="options">
-            <button class="option" id="option1"></button>
-            <button class="option" id="option2"></button>
-            <button class="option" id="option3"></button>
-            <button class="option" id="option4"></button>
+        
+        <div id="question-block" style="display: none;">
+            <div class="question">
+                <p id="question-text"></p>
+            </div>
+            <div class="options">
+                <button class="option" id="option1"></button>
+                <button class="option" id="option2"></button>
+                <button class="option" id="option3"></button>
+                <button class="option" id="option4"></button>
+            </div>
+            <div class="feedback" id="feedback"></div>
+            <button id="next-btn">Next Question</button>
+            <!-- <button id="quiz-back-to-home-btn" style="margin-top: 20px; display: none;">Back to Home</button> -->
         </div>
-        <div class="feedback" id="feedback"></div>
-        <button id="next-btn">Next Question</button>
     </div>
+
     <div class="result-sheet" id="result-sheet">
         <h2>Result Sheet</h2>
         <ul id="result-list"></ul>
         <button id="restart-btn">Restart Quiz</button>
+        <button id="result-back-to-home-btn" style="margin-top: 20px; display: none;">Back to Home</button>
     </div>
 
-    <script src="script.js"></script>
+    <script type="module" src="script.js"></script>
 </body>
 </html>
