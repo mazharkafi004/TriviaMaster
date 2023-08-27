@@ -63,8 +63,9 @@ const checkAnswer = (selectedIndex) => {
 
   const questionInfo = document.createElement("span");
   questionInfo.classList.add("option-question");
-  questionInfo.textContent = `${currentQuestion.question}: `;
+  questionInfo.textContent = `${currentQuestion.question} `;
   resultItem.appendChild(questionInfo);
+  resultItem.appendChild(document.createElement("br"));
 
   currentQuestion.options.forEach((option, optionIndex) => {
     const optionSpan = document.createElement("span");
@@ -83,8 +84,10 @@ const checkAnswer = (selectedIndex) => {
 
     resultItem.appendChild(optionSpan);
   });
-
+  resultItem.appendChild(document.createElement("br"));
+  resultItem.appendChild(document.createElement("br"));
   resultList.appendChild(resultItem);
+ 
   feedback.classList.remove("option-result", "red");
   feedback.classList.remove("option-result", "green");
   if (
