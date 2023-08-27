@@ -140,10 +140,11 @@ nextButton.addEventListener("click", nextQuestion);
 
 const startQuiz = (subjectQuestions) => {
   resultList.innerHTML = "";
+  nextButton.textContent = "Next Question";
   // Reset the currentQuestionIndex and score
   currentQuestionIndex = 0;
   score = 0;
-
+  feedback.classList.remove("option-result", "blue");
   document.querySelector(".home-container").style.display = "none";
   document.querySelector(".quiz-container").style.display = "block";
   nextButton.style.display = "block";
@@ -154,21 +155,17 @@ const startQuiz = (subjectQuestions) => {
   questionblock.style.display = "block";
 };
 
-document
-  .getElementById("histo-btn")
-  .addEventListener("click", () => startQuiz(historyQuestions));
-document
-  .getElementById("sci-btn")
-  .addEventListener("click", () => startQuiz(scienceQuestions));
-document
-  .getElementById("geo-btn")
-  .addEventListener("click", () => startQuiz(geographyQuestions));
-document
-  .getElementById("tech-btn")
-  .addEventListener("click", () => startQuiz(technologyQuestions));
-document
-  .getElementById("lit-btn")
-  .addEventListener("click", () => startQuiz(literatureQuestions));
+const subjectButtons = [
+  { buttonId: "histo-btn", questions: historyQuestions },
+  { buttonId: "sci-btn", questions: scienceQuestions },
+  { buttonId: "geo-btn", questions: geographyQuestions },
+  { buttonId: "tech-btn", questions: technologyQuestions },
+  { buttonId: "lit-btn", questions: literatureQuestions }
+];
+
+subjectButtons.forEach(({ buttonId, questions }) => {
+  document.getElementById(buttonId).addEventListener("click", () => startQuiz(questions));
+});
 
 const darkModeToggle = document.getElementById("dark-mode-toggle");
 
