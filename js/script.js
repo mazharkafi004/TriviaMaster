@@ -45,7 +45,7 @@ const loadQuestion = () => {
     optionButton.addEventListener("click", () => handleOptionClick(index));
     optionButtonsContainer.appendChild(optionButton);
   });
-
+  feedback.style.visibility = "hidden";
   feedback.textContent = "";
   nextButton.disabled = true;
 };
@@ -55,10 +55,10 @@ const handleOptionClick = (selectedIndex) => {
 };
 
 const checkAnswer = (selectedIndex) => {
-    // feedback.style.opacity = "0";
+  // feedback.style.opacity = "0";
   const currentQuestion = selectedQuestions[currentQuestionIndex];
   optionButtonsContainer.innerHTML = "";
-
+  feedback.style.visibility = "visible";
   const resultItem = document.createElement("li");
 
   const questionInfo = document.createElement("span");
@@ -85,38 +85,41 @@ const checkAnswer = (selectedIndex) => {
   });
 
   resultList.appendChild(resultItem);
-  feedback.classList.remove("option-result","red");
-  feedback.classList.remove("option-result","green");
+  feedback.classList.remove("option-result", "red");
+  feedback.classList.remove("option-result", "green");
   if (
     currentQuestion.options[selectedIndex] === currentQuestion.correctAnswer
   ) {
     score++;
     // feedback.style.visibility = "visible";
-    feedback.classList.add("option-result","green");
+    feedback.classList.add("option-result", "green");
     feedback.textContent = "Correct!";
-   
   } else {
     // feedback.style.visibility = "visible";
-    feedback.classList.add("option-result","red");
+    feedback.classList.add("option-result", "red");
     feedback.textContent = "Incorrect!";
-    
   }
   nextButton.disabled = false;
 };
 
 const nextQuestion = () => {
   currentQuestionIndex++;
+
   if (currentQuestionIndex < selectedQuestions.length) {
+    if (currentQuestionIndex == selectedQuestions.length - 1) {
+      nextButton.textContent = "Finish";
+    }
     loadQuestion();
   } else {
     // feedback.style.visibility = "visible";
-    feedback.classList.remove("option-result","red");
-    feedback.classList.remove("option-result","green");
+    feedback.classList.remove("option-result", "red");
+    feedback.classList.remove("option-result", "green");
     questionText.textContent = "Quiz completed!";
     optionButtonsContainer.innerHTML = "";
-    feedback.classList.add("option-result","blue");
+    feedback.classList.add("option-result", "blue");
     feedback.textContent = `Your score: ${score} out of ${selectedQuestions.length}`;
     nextButton.style.display = "none"; // Hide the next question button
+
     resultSheet.style.display = "block";
     backToHomeButtonResult.style.display = "block";
   }
@@ -125,6 +128,8 @@ const nextQuestion = () => {
 const restartQuiz = () => {
   currentQuestionIndex = 0;
   score = 0;
+  nextButton.textContent = "Next Question";
+  feedback.classList.remove("option-result", "blue");
   resultSheet.style.display = "none";
   nextButton.style.display = "block"; // Display the next question button
   resultList.innerHTML = ""; // Clear the result list
@@ -155,16 +160,16 @@ document
 document
   .getElementById("sci-btn")
   .addEventListener("click", () => startQuiz(scienceQuestions));
-  document
+document
   .getElementById("geo-btn")
   .addEventListener("click", () => startQuiz(geographyQuestions));
-  document
+document
   .getElementById("tech-btn")
   .addEventListener("click", () => startQuiz(technologyQuestions));
-  document
+document
   .getElementById("lit-btn")
   .addEventListener("click", () => startQuiz(literatureQuestions));
-  
+
 const darkModeToggle = document.getElementById("dark-mode-toggle");
 
 darkModeToggle.addEventListener("change", () => {
